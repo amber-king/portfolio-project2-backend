@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS rocks_dev;
 
 CREATE DATABASE rocks_dev;
 
-\ c rocks_dev;
+\c rocks_dev;
 
 CREATE TABLE rocks (
     id SERIAL PRIMARY KEY,
