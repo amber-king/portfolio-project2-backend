@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 });
 
 
-// app.use("/snacks", snacksControllers);
+// app.use("/rocks", rocksControllers);
 
 app.get("*", (req, res) => {
   res.status(404).json("Page not found");
