@@ -18,7 +18,7 @@ const getOneRock = async (id) => {
     const oneRock = await db.oneOrNone("SELECT * FROM rocks WHERE id=$1", id);
     return oneRock;
   } catch (error) {
-    return { error };
+    return { error: error };
   }
 };
 
@@ -40,7 +40,7 @@ const createOneRock = async (rock) => {
     );
     return createdRock;
   } catch (error) {
-    return { error };
+    return { error: error };
   }
 };
 
@@ -63,7 +63,7 @@ const updateOneRock = async (id, rock) => {
     );
     return updatedRock;
   } catch (error) {
-    return { error };
+    return  error ;
   }
 };
 
@@ -77,7 +77,7 @@ const deleteOneRock = async (id) => {
     );
     return deletedRock;
   } catch (error) {
-    return { error };
+    return  error ;
   }
 };
 

@@ -28,7 +28,7 @@ rocks.get("/:id", async (req, res) => {
   if (rock) {
     res.status(200).json(rock);
   } else {
-    res.status(404).json({ error: "Invalid ID" });
+    res.status(404).json({ error: "Rock not found" });
   }
 });
 
@@ -63,7 +63,7 @@ rocks.delete("/:id", async (req, res) => {
   if (deletedRock) {
     res.status(200).json(deletedRock);
   } else {
-    res.status(404).json({ error: "Invalid ID" });
+    res.status(404).json({ error: "No Rock Here" });
   }
 });
 
