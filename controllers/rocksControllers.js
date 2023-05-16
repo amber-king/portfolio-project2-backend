@@ -9,6 +9,11 @@ const {
   deleteOneRock,
 } = require("../queries/rocks.js");
 
+const {
+  checkHardnessBoolean,
+  checkRockElement,
+} = require("../validations/validations.js");
+
 // GET All Rocks
 // /rocks
 rocks.get("/", async (req, res) => {
@@ -34,12 +39,12 @@ rocks.get("/:id", async (req, res) => {
 
 // CREATE one rock
 // /rocks
-rocks.post("/", async (req, res) => {
+rocks.post("/", checkRockElement, checkHardnessBoolean, async (req, res) => {
   const rock = await createOneRock(req.body);
   if (rock) {
     res.status(200).json(rock);
   } else {
-    res.status(404).json({ error: "Invalid ID" });
+    res.status(404).json({ error: "No rock added" });
   }
 });
 
@@ -51,7 +56,7 @@ rocks.put("/:id", async (req, res) => {
   if (rock) {
     res.status(200).json(rock);
   } else {
-    res.status(404).json({ error: "Invalid ID" });
+    res.status(404).json({ error: "Rock not modfied" });
   }
 });
 
