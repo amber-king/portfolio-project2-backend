@@ -29,9 +29,9 @@ rocks.get("/", async (req, res) => {
 // /rocks/:id
 rocks.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const rock = await getOneRock(id);
-  if (rock) {
-    res.status(200).json(rock);
+  const soloRock = await getOneRock(id);
+  if (soloRock) {
+    res.status(200).json(soloRock);
   } else {
     res.status(404).json({ error: "Rock not found" });
   }
@@ -39,10 +39,10 @@ rocks.get("/:id", async (req, res) => {
 
 // CREATE one rock
 // /rocks
-rocks.post("/", checkRockElement, checkHardnessBoolean, async (req, res) => {
-  const rock = await createOneRock(req.body);
-  if (rock) {
-    res.status(200).json(rock);
+rocks.post("/", async (req, res) => {
+  const newRock = await createOneRock(req.body);
+  if (newRock) {
+    res.status(200).json(newRock);
   } else {
     res.status(404).json({ error: "No rock added" });
   }
@@ -50,11 +50,12 @@ rocks.post("/", checkRockElement, checkHardnessBoolean, async (req, res) => {
 
 // UPDATE one rock
 // /rocks/:id
-rocks.put("/:id", async (req, res) => {
+// also include validator for proper user editing requirements via user
+rocks.put("/:id", checkRockElement, checkHardnessBoolean, async (req, res) => {
   const { id } = req.params;
-  const rock = await updateOneRock(id, req.body);
-  if (rock) {
-    res.status(200).json(rock);
+  const changedRock = await updateOneRock(id, req.body);
+  if (changedRock) {
+    res.status(200).json(changedRock);
   } else {
     res.status(404).json({ error: "Rock not modfied" });
   }
