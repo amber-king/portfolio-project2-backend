@@ -49,7 +49,7 @@ const createOneRock = async (rock) => {
 const updateOneRock = async (id, rock) => {
   try {
     const updatedRock = await db.one(
-      "UPDATE rocks SET name=$1, element=$2, where_found=$3, color=$4, texture=$5, luster=$6,hardness=$7  WHERE snack_id=$8 RETURNING *;",
+      "UPDATE rocks SET name=$1, element=$2, where_found=$3, color=$4, texture=$5, luster=$6,hardness=$7  WHERE id=$8 RETURNING *;",
       [
         rock.name,
         rock.element,
